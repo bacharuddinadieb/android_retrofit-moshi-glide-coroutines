@@ -1,5 +1,7 @@
 package org.d3if0113.jurnal09.home
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -14,6 +16,8 @@ class HomeAdapter : ListAdapter<MiwokProperty, HomeAdapter.PropertyMiwokViewHold
         RecyclerView.ViewHolder(binding.root) {
         fun bind(miwokProperty: MiwokProperty) {
             binding.property = miwokProperty
+            binding.backgroundParsedColorDrawable =
+                ColorDrawable(Color.parseColor(miwokProperty.background))
             binding.executePendingBindings()
         }
     }

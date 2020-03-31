@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="property"
             type="org.d3if0113.jurnal09.network.MiwokProperty" />
+
+        <variable
+            name="backgroundParsedColorDrawable"
+            type="android.graphics.drawable.ColorDrawable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,23 +21,16 @@
             android:id="@+id/tv_itemHome"
             android:layout_width="0dp"
             android:layout_height="75dp"
-            android:background="#9A3131"
+            android:background="@{backgroundParsedColorDrawable}"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:text="@{property.category}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/background_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Number" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintTop_toBottomOf="@+id/tv_itemHome"
-            tools:layout_editor_absoluteX="0dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
