@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigasi"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="org.d3if0113.jurnal09.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_detailWithGambarFragment"
+            app:destination="@id/detailWithGambarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailWithoutGambarFragment"
+            app:destination="@id/detailWithoutGambarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailWithGambarFragment"
+        android:name="org.d3if0113.jurnal09.detailwithgambar.DetailWithGambarFragment"
+        android:label="fragment_detail_with_gambar"
+        tools:layout="@layout/fragment_detail_with_gambar">
+        <argument
+            android:name="selectedProperty"
+            app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailWithoutGambarFragment"
+        android:name="org.d3if0113.jurnal09.detailwithoutgambar.DetailWithoutGambarFragment"
+        android:label="fragment_detail_without_gambar"
+        tools:layout="@layout/fragment_detail_without_gambar">
+        <argument
+            android:name="selectedProperty"
+            app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
+    </fragment>
 </navigation>
