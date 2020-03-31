@@ -3,17 +3,22 @@ package org.d3if0113.jurnal09.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.d3if0113.jurnal09.network.MiwokAPI
-import org.d3if0113.jurnal09.network.MiwokProperty
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
-
     val response: LiveData<String>
         get() = _response
+
+    //coroutine
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(
+        viewModelJob + Dispatchers.Main
+    )
 
     init {
         getMiwokData()
@@ -21,19 +26,19 @@ class HomeViewModel : ViewModel() {
 
     private fun getMiwokData() {
         _response.value = "Response API Uy!"
-        MiwokAPI.retrofitService.getProperties().enqueue(
-            object : Callback<List<MiwokProperty>> {
-                override fun onFailure(call: Call<List<MiwokProperty>>?, t: Throwable?) {
-                    _response.value = "Gagal: ${t?.message}"
-                }
+        coroutineScope.launch {
+            var getPropertiesDeferred = MiwokAPI.retrofitService.getProperties()
+            try {
+                var listResult = getPropertiesDeferred.await()
+                _response.value = "${listResult.size} data"
+            } catch (e: Exception) {
+                _response.value = "Gagal: ${e.message}"
+            }
+        }
+    }
 
-                override fun onResponse(
-                    call: Call<List<MiwokProperty>>?,
-                    response: Response<List<MiwokProperty>>?
-                ) {
-                    _response.value = "${response?.body()?.size} data"
-                }
-
-            })
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
