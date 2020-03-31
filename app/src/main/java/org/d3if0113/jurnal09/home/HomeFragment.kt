@@ -27,6 +27,9 @@ class HomeFragment : Fragment() {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         dataBinding.lifecycleOwner = this
         dataBinding.viewModel = viewModel
+
+        dataBinding.rvHome.adapter = HomeAdapter()
+
         return dataBinding.root
     }
 
