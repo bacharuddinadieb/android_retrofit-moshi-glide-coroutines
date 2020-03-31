@@ -38,11 +38,19 @@ class HomeFragment : Fragment() {
         viewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
                 var miwokProperty = it
-                this.findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToDetailWithGambarFragment(
-                        miwokProperty
+                if (miwokProperty.wordList[0].image == "kosong") {
+                    this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToDetailWithoutGambarFragment(
+                            miwokProperty
+                        )
                     )
-                )
+                } else {
+                    this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToDetailWithGambarFragment(
+                            miwokProperty
+                        )
+                    )
+                }
                 viewModel.onItemHomeSudahDitekan()
             }
         })
