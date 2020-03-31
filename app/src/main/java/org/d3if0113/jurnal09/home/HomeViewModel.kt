@@ -13,10 +13,12 @@ import org.d3if0113.jurnal09.network.MiwokProperty
 class HomeViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
     private val _propertyMiwokList = MutableLiveData<List<MiwokProperty>>()
+    private val _navigateToDetail = MutableLiveData<MiwokProperty>()
     val response: LiveData<String>
         get() = _response
     val propertyMiwok: LiveData<List<MiwokProperty>>
         get() = _propertyMiwokList
+    val navigateToDetail: LiveData<MiwokProperty> get() = _navigateToDetail
 
     //coroutine
     private var viewModelJob = Job()
@@ -47,5 +49,13 @@ class HomeViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun onItemHomeDitekan(miwokProperty: MiwokProperty) {
+        _navigateToDetail.value = miwokProperty
+    }
+
+    fun onItemHomeSudahDitekan() {
+        _navigateToDetail.value = null
     }
 }

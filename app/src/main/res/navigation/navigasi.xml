@@ -22,7 +22,7 @@
         android:label="fragment_detail_with_gambar"
         tools:layout="@layout/fragment_detail_with_gambar">
         <argument
-            android:name="selectedProperty"
+            android:name="SELECTED_PROPERTY_KEY"
             app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
     </fragment>
     <fragment
@@ -31,7 +31,7 @@
         android:label="fragment_detail_without_gambar"
         tools:layout="@layout/fragment_detail_without_gambar">
         <argument
-            android:name="selectedProperty"
+            android:name="SELECTED_PROPERTY_KEY"
             app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
     </fragment>
 </navigation>

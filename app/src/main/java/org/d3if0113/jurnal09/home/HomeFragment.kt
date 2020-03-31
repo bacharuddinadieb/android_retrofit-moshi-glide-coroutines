@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import org.d3if0113.jurnal09.R
 import org.d3if0113.jurnal09.databinding.FragmentHomeBinding
 
@@ -19,6 +21,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by lazy {
         ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,21 @@ class HomeFragment : Fragment() {
         dataBinding.lifecycleOwner = this
         dataBinding.viewModel = viewModel
 
-        dataBinding.rvHome.adapter = HomeAdapter()
+        dataBinding.rvHome.adapter = HomeAdapter(HomeAdapter.HomeListener { miwokProperty ->
+            viewModel.onItemHomeDitekan(miwokProperty)
+        })
+
+        viewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                var miwokProperty = it
+                this.findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailWithGambarFragment(
+                        miwokProperty
+                    )
+                )
+                viewModel.onItemHomeSudahDitekan()
+            }
+        })
 
         return dataBinding.root
     }

@@ -10,14 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3if0113.jurnal09.databinding.HomeItemBinding
 import org.d3if0113.jurnal09.network.MiwokProperty
 
-class HomeAdapter : ListAdapter<MiwokProperty, HomeAdapter.PropertyMiwokViewHolder>(DiffCallback) {
+class HomeAdapter(val clickListener: HomeListener) :
+    ListAdapter<MiwokProperty, HomeAdapter.PropertyMiwokViewHolder>(DiffCallback) {
 
     class PropertyMiwokViewHolder(private var binding: HomeItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(miwokProperty: MiwokProperty) {
+        fun bind(miwokProperty: MiwokProperty, clickListener: HomeListener) {
             binding.property = miwokProperty
             binding.backgroundParsedColorDrawable =
                 ColorDrawable(Color.parseColor(miwokProperty.background))
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
@@ -42,7 +44,11 @@ class HomeAdapter : ListAdapter<MiwokProperty, HomeAdapter.PropertyMiwokViewHold
 
     override fun onBindViewHolder(holder: HomeAdapter.PropertyMiwokViewHolder, position: Int) {
         val miwokProperty = getItem(position)
-        holder.bind(miwokProperty)
+        holder.bind(miwokProperty, clickListener)
+    }
+
+    class HomeListener(val clickListener: (miwokProperty: MiwokProperty) -> Unit) {
+        fun onClick(miwokProperty: MiwokProperty) = clickListener(miwokProperty)
     }
 
 }

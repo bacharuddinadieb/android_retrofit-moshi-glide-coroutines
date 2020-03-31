@@ -11,11 +11,16 @@
         <variable
             name="backgroundParsedColorDrawable"
             type="android.graphics.drawable.ColorDrawable" />
+
+        <variable
+            name="clickListener"
+            type="org.d3if0113.jurnal09.home.HomeAdapter.HomeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{() -> clickListener.onClick(property)}">
 
         <TextView
             android:id="@+id/tv_itemHome"
