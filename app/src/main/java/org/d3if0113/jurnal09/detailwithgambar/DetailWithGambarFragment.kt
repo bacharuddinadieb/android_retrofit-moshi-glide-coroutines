@@ -19,7 +19,7 @@ class DetailWithGambarFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val args = arguments?.let { DetailWithGambarFragmentArgs.fromBundle(it) }
-        Log.i("aheheheWith", args?.SELECTEDPROPERTYKEY?.category)
+        Log.i("parcelWith", args?.SELECTEDPROPERTYKEY?.category)
         return inflater.inflate(R.layout.fragment_detail_with_gambar, container, false)
     }
 
