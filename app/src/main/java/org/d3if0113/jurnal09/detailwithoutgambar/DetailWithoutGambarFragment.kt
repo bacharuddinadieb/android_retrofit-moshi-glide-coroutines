@@ -1,5 +1,7 @@
 package org.d3if0113.jurnal09.detailwithoutgambar
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,6 +43,9 @@ class DetailWithoutGambarFragment : Fragment() {
         Log.i("atete", "${viewModel.wordList.value?.size} sizze")
 
         binding.rvDetailWithoutGambar.adapter = DetailWithoutGambarAdapter()
+
+        binding.backgroundParsedColorDrawable =
+            ColorDrawable(Color.parseColor(args?.SELECTEDPROPERTYKEY?.background))
 
         Log.i("parcelWithout", args?.SELECTEDPROPERTYKEY?.category)
         return binding.root

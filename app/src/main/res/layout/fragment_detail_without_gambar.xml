@@ -8,12 +8,16 @@
         <variable
             name="viewModel"
             type="org.d3if0113.jurnal09.detailwithoutgambar.DetailWithoutGambarViewModel" />
+
+        <variable
+            name="backgroundParsedColorDrawable"
+            type="android.graphics.drawable.ColorDrawable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F45F5F"
+        android:background="@{backgroundParsedColorDrawable}"
         tools:context=".home.HomeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
