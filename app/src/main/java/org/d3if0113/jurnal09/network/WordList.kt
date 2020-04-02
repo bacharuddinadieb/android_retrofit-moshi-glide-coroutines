@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class WordList(
     val defaultWord: String,
     val miwokWord: String,
-    val image: String = "kosong"
+    val image: String = "kosong",
+    val imageURL: String = "http://dif.indraazimi.com/miwok/${image}"
 ) : Parcelable
