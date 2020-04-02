@@ -35,6 +35,10 @@ fun bindRecyclerView3(recyclerView: RecyclerView, data: List<WordList>?) {
 fun bindImage(imgView: ImageView, imgURL: String?) {
     imgURL?.let {
         val imgUri = Uri.parse(imgURL)
-        Glide.with(imgView.context).load(imgUri).into(imgView)
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .placeholder(R.drawable.gambar_loading)
+            .error(R.drawable.ic_broken_image_24dp)
+            .into(imgView)
     }
 }
