@@ -1,5 +1,7 @@
 package org.d3if0113.jurnal09.detailwithgambar
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +40,8 @@ class DetailWithGambarFragment : Fragment() {
         viewModel.setMiwokData(args!!.SELECTEDPROPERTYKEY.wordList)
         binding.viewModel = viewModel
         binding.rvDetailWithGambar.adapter = DetailWithGambarAdapter()
+        binding.backgroundParsedColorDrawable =
+            ColorDrawable(Color.parseColor(args.SELECTEDPROPERTYKEY.background))
         return binding.root
     }
 

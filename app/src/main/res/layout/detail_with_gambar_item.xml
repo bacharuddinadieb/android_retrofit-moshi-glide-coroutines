@@ -8,12 +8,16 @@
         <variable
             name="property"
             type="org.d3if0113.jurnal09.network.WordList" />
+
+        <variable
+            name="backgroundParsedColorDrawable"
+            type="android.graphics.drawable.ColorDrawable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#272727">
+        android:background="@{backgroundParsedColorDrawable}">
 
         <ImageView
             android:id="@+id/imageView"
