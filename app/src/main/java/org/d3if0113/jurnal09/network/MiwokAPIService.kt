@@ -25,6 +25,10 @@ interface MiwokAPIService {
     @GET("miwok.json")
     fun getProperties():
             Deferred<List<MiwokProperty>>
+
+    @GET("miwok-v2.php")
+    fun getPropertiesV2():
+            Deferred<List<MiwokV2>>
 }
 
 object MiwokAPI {
