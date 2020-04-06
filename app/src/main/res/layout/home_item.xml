@@ -32,16 +32,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{() -> clickListener.onClick(property)}">
+        android:onClick="@{() -> clickListenerV2.onClick(propertyV2)}">
 
         <TextView
             android:id="@+id/tv_itemHome"
             android:layout_width="0dp"
             android:layout_height="75dp"
-            android:background="@{backgroundParsedColorDrawable}"
+            android:background="@{backgroundParsedColorDrawableV2}"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
-            android:text="@{property.category}"
+            android:text="@{propertyV2.category}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/background_light"
             app:layout_constraintEnd_toEndOf="parent"
