@@ -15,15 +15,19 @@ class HomeViewModel : ViewModel() {
     private val _navigateToDetail = MutableLiveData<MiwokProperty>()
     private val _miwokV2List = MutableLiveData<List<MiwokV2>>()
     private val _miwokV2ListHome = MutableLiveData<List<MiwokV2>>()
+    private val _navigateToDetailV2 = MutableLiveData<MiwokV2>()
     val response: LiveData<String>
         get() = _response
     val propertyMiwok: LiveData<List<MiwokProperty>>
         get() = _propertyMiwokList
-    val navigateToDetail: LiveData<MiwokProperty> get() = _navigateToDetail
+    val navigateToDetail: LiveData<MiwokProperty>
+        get() = _navigateToDetail
     val miwokV2: LiveData<List<MiwokV2>>
         get() = _miwokV2List
     val miwokV2Home: LiveData<List<MiwokV2>>
         get() = _miwokV2ListHome
+    val navigateToDetailV2: LiveData<MiwokV2>
+        get() = _navigateToDetailV2
 
     //coroutine
     private var viewModelJob = Job()
@@ -77,5 +81,10 @@ class HomeViewModel : ViewModel() {
 
     fun onItemHomeSudahDitekan() {
         _navigateToDetail.value = null
+        _navigateToDetailV2.value = null
+    }
+
+    fun onItemHomeDitekanV2(miwokV2: MiwokV2) {
+        _navigateToDetailV2.value = miwokV2
     }
 }

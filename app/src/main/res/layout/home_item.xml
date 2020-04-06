@@ -9,12 +9,24 @@
             type="org.d3if0113.jurnal09.network.MiwokProperty" />
 
         <variable
+            name="propertyV2"
+            type="org.d3if0113.jurnal09.network.MiwokV2" />
+
+        <variable
             name="backgroundParsedColorDrawable"
+            type="android.graphics.drawable.ColorDrawable" />
+
+        <variable
+            name="backgroundParsedColorDrawableV2"
             type="android.graphics.drawable.ColorDrawable" />
 
         <variable
             name="clickListener"
             type="org.d3if0113.jurnal09.home.HomeAdapter.HomeListener" />
+
+        <variable
+            name="clickListenerV2"
+            type="org.d3if0113.jurnal09.home.HomeAdapterV2.HomeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

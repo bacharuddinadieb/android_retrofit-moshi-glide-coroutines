@@ -9,12 +9,20 @@ import com.bumptech.glide.Glide
 import org.d3if0113.jurnal09.detailwithgambar.DetailWithGambarAdapter
 import org.d3if0113.jurnal09.detailwithoutgambar.DetailWithoutGambarAdapter
 import org.d3if0113.jurnal09.home.HomeAdapter
+import org.d3if0113.jurnal09.home.HomeAdapterV2
 import org.d3if0113.jurnal09.network.MiwokProperty
+import org.d3if0113.jurnal09.network.MiwokV2
 import org.d3if0113.jurnal09.network.WordList
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<MiwokProperty>?) {
     val adapter = recyclerView.adapter as HomeAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listDataV2")
+fun bindRecyclerViewV2(recyclerView: RecyclerView, data: List<MiwokV2>?) {
+    val adapter = recyclerView.adapter as HomeAdapterV2
     adapter.submitList(data)
 }
 
