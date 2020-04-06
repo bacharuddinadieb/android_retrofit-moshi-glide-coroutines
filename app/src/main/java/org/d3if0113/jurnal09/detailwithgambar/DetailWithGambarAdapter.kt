@@ -7,25 +7,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.d3if0113.jurnal09.databinding.DetailWithGambarItemBinding
-import org.d3if0113.jurnal09.network.WordList
+import org.d3if0113.jurnal09.network.MiwokV2
 
 class DetailWithGambarAdapter :
-    ListAdapter<WordList, DetailWithGambarAdapter.PropertyMiwokViewHolder>(DiffCallback) {
+    ListAdapter<MiwokV2, DetailWithGambarAdapter.PropertyMiwokViewHolder>(DiffCallback) {
 
     class PropertyMiwokViewHolder(private var binding: DetailWithGambarItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(wordList: WordList) {
-            binding.property = wordList
+        fun bind(miwokV2: MiwokV2) {
+            binding.property = miwokV2
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<WordList>() {
-        override fun areItemsTheSame(oldItem: WordList, newItem: WordList): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<MiwokV2>() {
+        override fun areItemsTheSame(oldItem: MiwokV2, newItem: MiwokV2): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: WordList, newItem: WordList): Boolean {
+        override fun areContentsTheSame(oldItem: MiwokV2, newItem: MiwokV2): Boolean {
             return oldItem.defaultWord == newItem.defaultWord
         }
 
@@ -44,9 +44,9 @@ class DetailWithGambarAdapter :
         holder: DetailWithGambarAdapter.PropertyMiwokViewHolder,
         position: Int
     ) {
-        val wordList = getItem(position)
-        holder.bind(wordList)
-        Log.i("holder", "${wordList} holder")
+        val miwokV2 = getItem(position)
+        holder.bind(miwokV2)
+        Log.i("holder", "${miwokV2} holder")
 
     }
 

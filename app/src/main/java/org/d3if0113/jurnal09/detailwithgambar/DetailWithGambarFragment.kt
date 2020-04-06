@@ -37,11 +37,11 @@ class DetailWithGambarFragment : Fragment() {
             false
         )
         binding.lifecycleOwner = this
-        viewModel.setMiwokData(args!!.SELECTEDPROPERTYKEY.wordList)
+        viewModel.setMiwokData(args!!.SELECTEDPROPERTYDATAV2.toList())
         binding.viewModel = viewModel
         binding.rvDetailWithGambar.adapter = DetailWithGambarAdapter()
         binding.backgroundParsedColorDrawable =
-            ColorDrawable(Color.parseColor(args.SELECTEDPROPERTYKEY.background))
+            ColorDrawable(Color.parseColor(args.SELECTEDPROPERTYKEYV2.background))
         return binding.root
     }
 

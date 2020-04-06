@@ -1,7 +1,6 @@
 package org.d3if0113.jurnal09
 
 import android.net.Uri
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,6 @@ import org.d3if0113.jurnal09.home.HomeAdapter
 import org.d3if0113.jurnal09.home.HomeAdapterV2
 import org.d3if0113.jurnal09.network.MiwokProperty
 import org.d3if0113.jurnal09.network.MiwokV2
-import org.d3if0113.jurnal09.network.WordList
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<MiwokProperty>?) {
@@ -38,11 +36,17 @@ fun bindRecyclerViewV22(recyclerView: RecyclerView, data: List<MiwokV2>?) {
     adapter.submitList(data)
 }
 
-@BindingAdapter("listDataWithGambar")
-fun bindRecyclerView3(recyclerView: RecyclerView, data: List<WordList>?) {
+//@BindingAdapter("listDataWithGambar")
+//fun bindRecyclerView3(recyclerView: RecyclerView, data: List<WordList>?) {
+//    val adapter = recyclerView.adapter as DetailWithGambarAdapter
+//    adapter.submitList(data)
+//    Log.i("binding adapter", "${data?.size} data")
+//}
+
+@BindingAdapter("listDataWithGambarV2")
+fun bindRecyclerViewV23(recyclerView: RecyclerView, data: List<MiwokV2>?) {
     val adapter = recyclerView.adapter as DetailWithGambarAdapter
     adapter.submitList(data)
-    Log.i("binding adapter", "${data?.size} data")
 }
 
 @BindingAdapter("imageURL")
