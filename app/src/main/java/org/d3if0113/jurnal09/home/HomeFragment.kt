@@ -1,9 +1,11 @@
 package org.d3if0113.jurnal09.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -55,7 +57,25 @@ class HomeFragment : Fragment() {
             }
         })
 
+        viewModel.response.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (viewModel.response.value == "loaded") {
+                    hideLoader()
+                } else if (viewModel.response.value!!.contains("Gagal")) {
+                    Toast.makeText(context, viewModel.response.value, Toast.LENGTH_LONG).show()
+                    dataBinding.tvLaoding.text = "Gagal memuat data :("
+                }
+            }
+        })
+
         return dataBinding.root
+    }
+
+    fun hideLoader() {
+        dataBinding.pbLoading.visibility = View.GONE
+        dataBinding.tvLaoding.visibility = View.GONE
+        dataBinding.rvHome.visibility = View.VISIBLE
+        Log.i("visibility", "visible")
     }
 
 }

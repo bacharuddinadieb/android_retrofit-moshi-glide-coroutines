@@ -3,12 +3,10 @@ package org.d3if0113.jurnal09.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.d3if0113.jurnal09.network.MiwokAPI
 import org.d3if0113.jurnal09.network.MiwokProperty
+import java.util.concurrent.TimeUnit
 
 class HomeViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
@@ -36,10 +34,11 @@ class HomeViewModel : ViewModel() {
             var getPropertiesDeferred = MiwokAPI.retrofitService.getProperties()
             try {
                 var listResult = getPropertiesDeferred.await()
-                _response.value = "${listResult.size} data"
                 if (listResult.size > 0) {
                     _propertyMiwokList.value = listResult
                 }
+                delay(TimeUnit.SECONDS.toMillis(2))
+                _response.value = "loaded"
             } catch (e: Exception) {
                 _response.value = "Gagal: ${e.message}"
             }
