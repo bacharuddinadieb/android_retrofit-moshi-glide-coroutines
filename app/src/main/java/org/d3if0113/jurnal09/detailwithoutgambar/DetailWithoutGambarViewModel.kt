@@ -4,25 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.d3if0113.jurnal09.network.WordList
+import org.d3if0113.jurnal09.network.MiwokV2
 
 class DetailWithoutGambarViewModel : ViewModel() {
-    private val _wordList = MutableLiveData<List<WordList>>()
-    val wordList: LiveData<List<WordList>>
-        get() = _wordList
+    private val _miwokV2 = MutableLiveData<List<MiwokV2>>()
+    val miwokV2: LiveData<List<MiwokV2>>
+        get() = _miwokV2
 
-//    init {
-//        asd()
-//    }
-//
-//    private fun asd(){
-//        var aha = mutableListOf<WordList>()
-//        aha.add(WordList("kosong", "kosong", "kosong"))
-//        _wordList.value = aha
-//    }
-
-    fun setMiwokData(wordList: List<WordList>) {
-        _wordList.value = wordList
-        Log.i("model", "${wordList.get(0).defaultWord}")
+    fun setMiwokData(miwokV2: List<MiwokV2>) {
+        _miwokV2.value = miwokV2
+        Log.i("model", "${miwokV2.get(0).defaultWord}")
     }
 }

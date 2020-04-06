@@ -7,7 +7,7 @@
 
         <variable
             name="property"
-            type="org.d3if0113.jurnal09.network.WordList" />
+            type="org.d3if0113.jurnal09.network.MiwokV2" />
 
         <variable
             name="backgroundParsedColorDrawable"

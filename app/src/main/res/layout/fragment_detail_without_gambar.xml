@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:listDataWithoutGambar="@{viewModel.wordList}"
+            app:listDataWithoutGambarV2="@{viewModel.miwokV2}"
             tools:listitem="@layout/detail_without_gambar_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

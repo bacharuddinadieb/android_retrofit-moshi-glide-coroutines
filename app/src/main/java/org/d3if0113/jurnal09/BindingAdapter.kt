@@ -26,8 +26,14 @@ fun bindRecyclerViewV2(recyclerView: RecyclerView, data: List<MiwokV2>?) {
     adapter.submitList(data)
 }
 
-@BindingAdapter("listDataWithoutGambar")
-fun bindRecyclerView2(recyclerView: RecyclerView, data: List<WordList>?) {
+//@BindingAdapter("listDataWithoutGambar")
+//fun bindRecyclerView2(recyclerView: RecyclerView, data: List<WordList>?) {
+//    val adapter = recyclerView.adapter as DetailWithoutGambarAdapter
+//    adapter.submitList(data)
+//}
+
+@BindingAdapter("listDataWithoutGambarV2")
+fun bindRecyclerViewV22(recyclerView: RecyclerView, data: List<MiwokV2>?) {
     val adapter = recyclerView.adapter as DetailWithoutGambarAdapter
     adapter.submitList(data)
 }
