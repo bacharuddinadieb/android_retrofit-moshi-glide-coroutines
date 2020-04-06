@@ -10,8 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import org.d3if0113.jurnal09.R
 import org.d3if0113.jurnal09.databinding.FragmentHomeBinding
+import org.d3if0113.jurnal09.network.MiwokV2
 
 /**
  * A simple [Fragment] subclass.
@@ -65,21 +67,29 @@ class HomeFragment : Fragment() {
         viewModel.navigateToDetailV2.observe(viewLifecycleOwner, Observer {
             it?.let {
                 var miwokV2 = it
+                var listMiwokV2Sementara: MutableList<MiwokV2> = mutableListOf()
+                for (item in viewModel.miwokV2.value!!) {
+                    if (item.category.equals(miwokV2.category)) {
+                        listMiwokV2Sementara.add(item)
+                    }
+                }
                 if (miwokV2.image == "kosong") {
-//                    this.findNavController().navigate(
-//                        HomeFragmentDirections.actionHomeFragmentToDetailWithoutGambarFragment(
-//                            viewModel.propertyMiwok.value!![0],
-//                            miwokV2
-//                        )
-//                    )
+                    this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToDetailWithoutGambarFragment(
+                            viewModel.propertyMiwok.value!![0],
+                            miwokV2,
+                            listMiwokV2Sementara.toTypedArray()
+                        )
+                    )
                     Log.i("navigateToDetailV2", "${miwokV2.category} + ${miwokV2.imageURL}")
                 } else {
-//                    this.findNavController().navigate(
-//                        HomeFragmentDirections.actionHomeFragmentToDetailWithGambarFragment(
-//                            viewModel.propertyMiwok.value!![0],
-//                            miwokV2
-//                        )
-//                    )
+                    this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToDetailWithGambarFragment(
+                            viewModel.propertyMiwok.value!![0],
+                            miwokV2,
+                            listMiwokV2Sementara.toTypedArray()
+                        )
+                    )
                     Log.i("navigateToDetailV2", "${miwokV2.category} + ${miwokV2.imageURL}")
                 }
                 viewModel.onItemHomeSudahDitekan()
