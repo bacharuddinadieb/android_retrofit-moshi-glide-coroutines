@@ -24,6 +24,9 @@
         <argument
             android:name="SELECTED_PROPERTY_KEY"
             app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
+        <argument
+            android:name="SELECTED_PROPERTY_KEY_V2"
+            app:argType="org.d3if0113.jurnal09.network.MiwokV2" />
     </fragment>
     <fragment
         android:id="@+id/detailWithoutGambarFragment"
@@ -33,5 +36,8 @@
         <argument
             android:name="SELECTED_PROPERTY_KEY"
             app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
+        <argument
+            android:name="SELECTED_PROPERTY_KEY_V2"
+            app:argType="org.d3if0113.jurnal09.network.MiwokV2" />
     </fragment>
 </navigation>
