@@ -14,6 +14,7 @@ class HomeViewModel : ViewModel() {
     private val _propertyMiwokList = MutableLiveData<List<MiwokProperty>>()
     private val _navigateToDetail = MutableLiveData<MiwokProperty>()
     private val _miwokV2List = MutableLiveData<List<MiwokV2>>()
+    private val _miwokV2ListHome = MutableLiveData<List<MiwokV2>>()
     val response: LiveData<String>
         get() = _response
     val propertyMiwok: LiveData<List<MiwokProperty>>
@@ -21,6 +22,8 @@ class HomeViewModel : ViewModel() {
     val navigateToDetail: LiveData<MiwokProperty> get() = _navigateToDetail
     val miwokV2: LiveData<List<MiwokV2>>
         get() = _miwokV2List
+    val miwokV2Home: LiveData<List<MiwokV2>>
+        get() = _miwokV2ListHome
 
     //coroutine
     private var viewModelJob = Job()
@@ -45,6 +48,15 @@ class HomeViewModel : ViewModel() {
                 }
                 if (listResultV2.isNotEmpty()) {
                     _miwokV2List.value = listResultV2
+                    var categorySementara = ""
+                    var miwokV2ListHomeSementara: MutableList<MiwokV2> = mutableListOf()
+                    for (item in listResultV2) {
+                        if (categorySementara != item.category) {
+                            miwokV2ListHomeSementara.add(item)
+                        }
+                        categorySementara = item.category
+                    }
+                    _miwokV2ListHome.value = miwokV2ListHomeSementara
                 }
                 delay(TimeUnit.SECONDS.toMillis(2))
                 _response.value = "loaded"
