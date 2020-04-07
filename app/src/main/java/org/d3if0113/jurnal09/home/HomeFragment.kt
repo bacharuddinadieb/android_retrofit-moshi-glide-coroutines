@@ -82,7 +82,6 @@ class HomeFragment : Fragment() {
                 if (miwokV2.image == "kosong") {
                     this.findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToDetailWithoutGambarFragment(
-                            viewModel.propertyMiwok.value!![0],
                             miwokV2,
                             listMiwokV2Sementara.toTypedArray()
                         )
@@ -91,7 +90,6 @@ class HomeFragment : Fragment() {
                 } else {
                     this.findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToDetailWithGambarFragment(
-                            viewModel.propertyMiwok.value!![0],
                             miwokV2,
                             listMiwokV2Sementara.toTypedArray()
                         )
@@ -106,8 +104,11 @@ class HomeFragment : Fragment() {
             it?.let {
                 if (viewModel.response.value == "loaded") {
                     hideLoader()
+                } else if (viewModel.response.value == ("loadedLocal")) {
+                    Toast.makeText(context, "Mengambil data local", Toast.LENGTH_LONG).show()
+                    hideLoader()
                 } else if (viewModel.response.value!!.contains("Gagal")) {
-                    Toast.makeText(context, viewModel.response.value, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Anda Offline! :(", Toast.LENGTH_LONG).show()
                     dataBinding.tvLaoding.text = "Gagal memuat data :("
                 }
             }

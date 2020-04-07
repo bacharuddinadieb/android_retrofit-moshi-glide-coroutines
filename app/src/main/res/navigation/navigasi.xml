@@ -22,9 +22,6 @@
         android:label="fragment_detail_with_gambar"
         tools:layout="@layout/fragment_detail_with_gambar">
         <argument
-            android:name="SELECTED_PROPERTY_KEY"
-            app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
-        <argument
             android:name="SELECTED_PROPERTY_KEY_V2"
             app:argType="org.d3if0113.jurnal09.network.MiwokV2" />
         <argument
@@ -36,9 +33,6 @@
         android:name="org.d3if0113.jurnal09.detailwithoutgambar.DetailWithoutGambarFragment"
         android:label="fragment_detail_without_gambar"
         tools:layout="@layout/fragment_detail_without_gambar">
-        <argument
-            android:name="SELECTED_PROPERTY_KEY"
-            app:argType="org.d3if0113.jurnal09.network.MiwokProperty" />
         <argument
             android:name="SELECTED_PROPERTY_KEY_V2"
             app:argType="org.d3if0113.jurnal09.network.MiwokV2" />

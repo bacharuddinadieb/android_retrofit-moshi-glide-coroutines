@@ -3,7 +3,6 @@ package org.d3if0113.jurnal09.detailwithgambar
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,6 @@ class DetailWithGambarFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val args = arguments?.let { DetailWithGambarFragmentArgs.fromBundle(it) }
-        Log.i("parcelWith", args?.SELECTEDPROPERTYKEY?.category)
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_detail_with_gambar,

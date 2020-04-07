@@ -83,6 +83,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 miwokRepository.refreshMiwok()
+                _response.value = "loaded"
+            } catch (networkError: IOException) {
+                _response.value = "Gagal: ${networkError.message}"
+                Log.i("gagal", networkError.message)
+                Log.i("dataMiwok", "${miwokV2.value}")
+            } finally {
                 var miwokV2ListHomeSementara: MutableList<MiwokV2> = mutableListOf()
                 var categorySementara = ""
                 for (item in miwokV2.value!!) {
@@ -92,10 +98,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     categorySementara = item.category
                 }
                 _miwokV2ListHome.value = miwokV2ListHomeSementara
-                _response.value = "loaded"
-            } catch (networkError: IOException) {
-                _response.value = "Gagal: ${networkError.message}"
-                Log.i("gagal", networkError.message)
+                if (_response.value != "loaded") {
+                    _response.value = "loadedLocal"
+                }
             }
         }
     }

@@ -51,7 +51,7 @@ class DetailWithoutGambarFragment : Fragment() {
         binding.backgroundParsedColorDrawable =
             ColorDrawable(Color.parseColor(args?.SELECTEDPROPERTYKEYV2?.background))
 
-        Log.i("parcelWithout", args?.SELECTEDPROPERTYKEY?.category)
+        Log.i("parcelWithout", args?.SELECTEDPROPERTYKEYV2?.category)
         return binding.root
     }
 
