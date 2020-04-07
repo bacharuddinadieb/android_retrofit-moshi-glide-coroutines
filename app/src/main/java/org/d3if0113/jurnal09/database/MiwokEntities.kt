@@ -27,3 +27,16 @@ fun List<DatabaseMiwok>.asDomainModel(): List<MiwokV2> {
         )
     }
 }
+
+fun List<DatabaseMiwok>.asDatabaseModel(): List<DatabaseMiwok> {
+    return map {
+        DatabaseMiwok(
+            category = it.category,
+            background = it.background,
+            miwokWord = it.miwokWord,
+            defaultWord = it.defaultWord,
+            image = it.image,
+            imageURL = it.imageURL
+        )
+    }
+}

@@ -1,29 +1,36 @@
 package org.d3if0113.jurnal09.home
 
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
+import org.d3if0113.jurnal09.database.getDatabase
 import org.d3if0113.jurnal09.network.MiwokAPI
 import org.d3if0113.jurnal09.network.MiwokProperty
 import org.d3if0113.jurnal09.network.MiwokV2
+import org.d3if0113.jurnal09.repository.MiwokRepository
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val _response = MutableLiveData<String>()
     private val _propertyMiwokList = MutableLiveData<List<MiwokProperty>>()
     private val _navigateToDetail = MutableLiveData<MiwokProperty>()
     private val _miwokV2List = MutableLiveData<List<MiwokV2>>()
     private val _miwokV2ListHome = MutableLiveData<List<MiwokV2>>()
     private val _navigateToDetailV2 = MutableLiveData<MiwokV2>()
+    private val miwokRepository = MiwokRepository(getDatabase(application))
+
     val response: LiveData<String>
         get() = _response
     val propertyMiwok: LiveData<List<MiwokProperty>>
         get() = _propertyMiwokList
     val navigateToDetail: LiveData<MiwokProperty>
         get() = _navigateToDetail
-    val miwokV2: LiveData<List<MiwokV2>>
-        get() = _miwokV2List
+    val miwokV2 = miwokRepository.miwok
     val miwokV2Home: LiveData<List<MiwokV2>>
         get() = _miwokV2ListHome
     val navigateToDetailV2: LiveData<MiwokV2>
@@ -36,7 +43,8 @@ class HomeViewModel : ViewModel() {
     )
 
     init {
-        getMiwokData()
+//        getMiwokData()
+        refreshDataFromRepo()
     }
 
     private fun getMiwokData() {
@@ -66,6 +74,28 @@ class HomeViewModel : ViewModel() {
                 _response.value = "loaded"
             } catch (e: Exception) {
                 _response.value = "Gagal: ${e.message}"
+            }
+        }
+    }
+
+    private fun refreshDataFromRepo() {
+        _response.value = "Response API Uy!"
+        viewModelScope.launch {
+            try {
+                miwokRepository.refreshMiwok()
+                var miwokV2ListHomeSementara: MutableList<MiwokV2> = mutableListOf()
+                var categorySementara = ""
+                for (item in miwokV2.value!!) {
+                    if (categorySementara != item.category) {
+                        miwokV2ListHomeSementara.add(item)
+                    }
+                    categorySementara = item.category
+                }
+                _miwokV2ListHome.value = miwokV2ListHomeSementara
+                _response.value = "loaded"
+            } catch (networkError: IOException) {
+                _response.value = "Gagal: ${networkError.message}"
+                Log.i("gagal", networkError.message)
             }
         }
     }

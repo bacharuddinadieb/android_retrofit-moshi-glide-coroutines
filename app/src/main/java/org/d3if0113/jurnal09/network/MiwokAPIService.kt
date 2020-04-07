@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
+import org.d3if0113.jurnal09.database.DatabaseMiwok
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -32,7 +33,7 @@ interface MiwokAPIService {
 
     @GET("miwok-v2.php")
     fun getPropertiesV2Network():
-            Deferred<NetworkMiwokContainer>
+            Deferred<List<DatabaseMiwok>>
 }
 
 object MiwokAPI {
@@ -40,3 +41,18 @@ object MiwokAPI {
         retrofit.create(MiwokAPIService::class.java)
     }
 }
+
+//interface MiwokAPIServiceV2{
+//    @GET("miwok-v2.php")
+//    fun getMiwok():Deferred<NetworkMiwokContainer>
+//}
+//
+//object MiwokAPIV2 {
+//    private val retrofit = Retrofit.Builder()
+//        .baseUrl(BASE_URL)
+//        .addConverterFactory(MoshiConverterFactory.create())
+//        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//        .build()
+//
+//    val miwok = retrofit.create(MiwokAPIServiceV2::class.java)
+//}

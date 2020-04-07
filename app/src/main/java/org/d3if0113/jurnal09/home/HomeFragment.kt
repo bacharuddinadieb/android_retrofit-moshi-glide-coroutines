@@ -64,6 +64,12 @@ class HomeFragment : Fragment() {
 //            }
 //        })
 
+        viewModel.miwokV2.observe(viewLifecycleOwner, Observer {
+            it.let {
+                Log.i("observerMiwokv2!", it.toString())
+            }
+        })
+
         viewModel.navigateToDetailV2.observe(viewLifecycleOwner, Observer {
             it?.let {
                 var miwokV2 = it
