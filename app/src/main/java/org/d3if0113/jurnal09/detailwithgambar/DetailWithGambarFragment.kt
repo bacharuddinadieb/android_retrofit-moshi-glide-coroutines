@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -28,6 +29,10 @@ class DetailWithGambarFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val args = arguments?.let { DetailWithGambarFragmentArgs.fromBundle(it) }
+        if (args != null) {
+            (activity as AppCompatActivity).supportActionBar?.title =
+                args.SELECTEDPROPERTYKEYV2.category
+        }
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_detail_with_gambar,

@@ -20,7 +20,7 @@ class MiwokApplication : Application() {
 
     private fun delayInit() {
         applicationScope.launch {
-            Log.i("Log init", "init recurring work")
+            Log.i("Log init", "init recurring work, Refresh setiap 1 hari")
             setuprecurringWork()
         }
     }
